@@ -9,7 +9,7 @@ get_cards_hashes(){
         # hs is global
         hs=''
         for (( i=0; i < ${GPU_COUNT_NVIDIA}; i++ )); do
-                local MHS=`cat $LOG_NAME | grep "GPU${i}:" | tail -n 1 | awk '{ printf $6"\n" }'`
+                local MHS=`cat $LOG_NAME | grep "<GPU${i}>:" | tail -n 1 | awk '{ printf $6"\n" }'`
                 hs[$i]=`echo $MHS`
         done
 }
