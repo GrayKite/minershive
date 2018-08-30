@@ -23,7 +23,7 @@ get_nvidia_cards_fan(){
 }
 
 get_miner_uptime(){
-        local tmp=$(cat $LOG_NAME | head -n 3 | tail -n 1 | awk '{ printf $1" "$2"\n" }')
+        local tmp=$(cat $LOG_NAME | head -n 3 | tail -n 1 | cut -d "[" -f2 | cut -d "," -f1)
         local start=$(date +%s -d "$tmp")
         local now=$(date +%s)
         echo $((now - start))
@@ -36,7 +36,7 @@ get_total_hashes(){
 }
 
 get_log_time_diff(){
-        local getLastLogTime=`tail -n 100 $LOG_NAME | grep -a "Total" | tail -n 1 | awk {'print $1,$2'} | sed 's/[][]//g'`
+        local getLastLogTime=`tail -n 100 $LOG_NAME | grep -a "Total" | tail -n 1 | awk -F, '{ printf $1}' | sed 's/[][]//g'`
         local logTime=`date --date="$getLastLogTime" +%s`
         local curTime=`date +%s`
         echo `expr $curTime - $logTime`
