@@ -5,7 +5,7 @@
 [[ -z $CUSTOM_URL ]] && echo -e "${YELLOW}CUSTOM_URL is empty${NOCOLOR}" && return 1
 
 #CUSTOM_ALGO=lyra2z
-conf="-url ${CUSTOM_URL} -user ${CUSTOM_TEMPLATE} ${CUSTOM_USER_CONFIG}"
+conf="-url ${CUSTOM_URL} --long-format -user ${CUSTOM_TEMPLATE} ${CUSTOM_USER_CONFIG}"
 
 #replace tpl values in whole file
 [[ -z $EWAL && -z $ZWAL && -z $DWAL ]] && echo -e "${RED}No WAL address is set${NOCOLOR}"
